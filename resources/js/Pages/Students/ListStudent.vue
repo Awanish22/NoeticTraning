@@ -21,7 +21,7 @@
                 Class
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                City
+                Country
               </th> 
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 State
@@ -36,10 +36,10 @@
 
             </tr>
           </thead>
-          <tbody  v-for="row in data" :key="row.id">
+          <tbody  v-for="row in data"  :key="row.id">
             <tr class="bg-gray-100 border-b">
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-               {{ row.id }}
+               {{ data.id }}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                {{ row.fname }}
@@ -48,29 +48,22 @@
                {{ row.lname }}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-               {{ row.class }}
+               {{ row.clas }}
               </td>
 
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-               {{ row.city }}
+               {{ row.country.name }}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-               {{ row.state }}
+               {{ row.state.name }}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                {{ row.zip }}
                </td>
-             <!-- <td class="border px-4 py-2">
-         <a href="edit'+item.id" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit </a>
-         <a href="" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</a>
-                                </td> -->
-
-                                <td>
+               <td>
                     <div class="btn-group" role="group">
-                         <Link :href="route('student.edit', row.id)">Edit</Link>
-                                 <!-- <a href="{{ route('api/edit',$row.id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit </a> -->
-
-            <button class="btn btn-danger" @click="deleteProduct(row.id)">Delete</button>
+                         <Link class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" :href="'/student/edit/' + row.id">Edit</Link>
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"  @click="deletee(row.id)">Delete</button>
                     </div>
                 </td>
             </tr> 
@@ -88,30 +81,38 @@ import { Head, Link } from '@inertiajs/inertia-vue3'
         components: {
             Link,
         },
-        props: ['data', 'errors'],
+        props: [],
         data() {
             return {
-               
-                form: {
-                    fname: null,
-                    lname: null,
-                    class: null,
-                    state: null,
-                    city: null,
-                    zip: null,
-                },
+               data:[]
             }
         },
         methods: {
-            deleteProduct(id) { 
-                axios
-                    .delete(`http://localhost:8000/api/delete/${id}`)
+
+            lists(){
+                axios.get('/api/lists').then(response => {
+                            if(response.status === 200) {
+                            this.data = response.data.data
+
+                            }
+                    })
+            },
+
+            deletee(id) { 
+                axios.delete('/api/delete/'+ id)
                     .then(response => {
-                        let i = this.row.map(data => data.id).indexOf(id);
-                        this.row.splice(i, 1)
-                    });
+                            if(response.status === 200) {
+                            this.data = response.data
+
+                            }
+                    })
             }
-        }
+
+
+        },
+             created(){
+            this.lists()
+        },
             
         
     }

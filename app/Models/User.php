@@ -58,4 +58,13 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    public function contact(){
+        return $this->hasone(Contact::class);
+    }
+
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
 }

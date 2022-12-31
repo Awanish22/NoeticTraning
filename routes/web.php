@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ViewController;
+use App\Http\Controllers\StudentsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,6 +53,11 @@ Route::delete('/article/delete/{id}', [ArticleController::class, 'delete']);
 // Route::get('/comment', [CommentController::class, 'store']);
 
 //New
-Route::get('/add', [ViewController::class, 'index']);
+// Route::get('/add', [ViewController::class, 'index']);
 // Route::get('/edit', [ViewController::class, 'edit']);
 // Route::get('/list', [ViewController::class, 'list']);
+//student
+Route::get('students', [StudentsController::class, 'index']);
+Route::get('/student/edit/{id}', [StudentsController::class, 'edit']);
+Route::get('list',[StudentsController::class,'list']);
+

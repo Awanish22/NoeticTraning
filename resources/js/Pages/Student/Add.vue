@@ -1,5 +1,4 @@
 <template>
-
 <div class="container">
     <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
 <form class="w-full max-w-lg" @submit.prevent="create">

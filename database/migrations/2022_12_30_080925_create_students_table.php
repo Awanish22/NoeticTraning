@@ -17,10 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('fname');
             $table->string('lname');
-            $table->string('class');
-            $table->string('city');
-            $table->string('state');
+            $table->string('clas');
             $table->string('zip');
+            $table->unsignedBigInteger('country_id');
+            $table->unsignedBigInteger('state_id');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
             $table->timestamps();
         });
     }

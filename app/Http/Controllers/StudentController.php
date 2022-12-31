@@ -32,27 +32,34 @@ class StudentController extends Controller
         );
     }
 
-    public function edit($id)
-    {
+    // public function edit($id)
+    // {
 
-        $student = Student::find($id);
-        return Inertia::render(
-                'Student/Edit', 
-                [
-                    'data' => $student  ]
+    //     $student = Student::find($id);
+    //     return Inertia::render(
+    //             'Student/Edit', 
+    //             [
+    //                 'data' => $student  ]
                     
-                );
-    }
+    //             );
+    // }
 
-    public function update(Request $request)
+    public function edit(Student $student)
     {
-        if ($request->has('id')) {
-            Article::find($request->input('id'))->update($request->all());
-            return redirect()->back()
-                    ->with('message', 'Post Updated Successfully.');
-        }
+        return Inertia::render('Student/Edit', compact('student'));
     }
 
+
+
+    public function update(Request $request, Student $student)
+    {
+
+        $student->update($request->all());
+// dd($student);
+        return Inertia::render('Student/List',compact('student'));
+
+
+    }
 
     public function destroy($id)
     {
