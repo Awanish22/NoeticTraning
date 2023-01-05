@@ -7,6 +7,10 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,7 +61,16 @@ Route::delete('/article/delete/{id}', [ArticleController::class, 'delete']);
 // Route::get('/edit', [ViewController::class, 'edit']);
 // Route::get('/list', [ViewController::class, 'list']);
 //student
-Route::get('students', [StudentsController::class, 'index']);
-Route::get('/student/edit/{id}', [StudentsController::class, 'edit']);
-Route::get('list',[StudentsController::class,'list']);
+// Route::get('students', [StudentsController::class, 'index']);
+// Route::get('/student/edit/{id}', [StudentsController::class, 'edit']);
+// Route::get('list',[StudentsController::class,'list']);
 
+//Project
+// Route::get('/add', [ProjectController::class, 'index']);
+// Route::get('/list', [ProjectController::class, 'list']);
+// Route::get('/project/edit/{id}', [ProjectController::class, 'edit']);
+
+//Resource
+Route::get('/add', [TestController::class, 'index']);
+Route::get('/list', [TestController::class, 'list']);
+Route::get('/test/edit/{id}', [TestController::class, 'edit']);

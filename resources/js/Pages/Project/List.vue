@@ -9,25 +9,31 @@
           <thead class="bg-white border-b">
             <tr>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                #
+               Id
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                First Name
-              </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Last Name
+                Name
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Class
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Address
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                DOB
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Language
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Text
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Country
               </th> 
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 State
-              </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Zip
               </th>
 
               <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
@@ -39,16 +45,28 @@
           <tbody  v-for="row in data"  :key="row.id">
             <tr class="bg-gray-100 border-b">
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-               {{ data.id }}
+               {{ row.id }}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-               {{ row.fname }}
+               {{ row.name }}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-               {{ row.lname }}
+               {{ row.clas }}
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-               {{ row.class }}
+               {{ row.address }}
+              </td>
+
+               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+               {{ row.dob }}
+              </td>
+
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+               {{ row.language}}
+              </td>
+
+               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+               {{ row.text }}
               </td>
 
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
@@ -57,13 +75,10 @@
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                {{ row.state }}
               </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-               {{ row.zip }}
-               </td>
                <td>
                     <div class="btn-group" role="group">
-                         <Link class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" :href="'/student/edit/' + row.id">Edit</Link>
-            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"  @click="deletee(row.id)">Delete</button>
+                         <Link class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" :href="'/project/edit/' + row.id">Edit</Link>
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"  @click="destroy(row.id)">Delete</button>
                     </div>
                 </td>
             </tr> 
@@ -84,7 +99,8 @@ import { Head, Link } from '@inertiajs/inertia-vue3'
         props: [],
         data() {
             return {
-               data:[]
+               data:[],
+               
             }
         },
         methods: {
@@ -98,7 +114,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3'
                     })
             },
 
-            deletee(id) { 
+            destroy(id) { 
                 axios.delete('/api/delete/'+ id)
                     .then(response => {
                             if(response.status === 200) {

@@ -9,6 +9,7 @@ use App\Models\State;
 use App\Models\Country;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Requests\CreateStudentRequest;
+use App\Http\Resources\StudentResource;
 
 class StudentsController extends Controller
 {
@@ -51,7 +52,10 @@ class StudentsController extends Controller
 
     public function lists()
     {
-    $data= Student::with('country','state')->get();
+        return StudentResource::collection(
+            Student::get()
+        );
+    // $data= ::Studentwith('country','state')->get();
         return response()->json(['data'=> $data],200);
     }
 

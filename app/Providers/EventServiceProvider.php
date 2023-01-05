@@ -1,7 +1,12 @@
 <?php
 
 namespace App\Providers;
-
+use App\Observers\ProjectObserver;
+use App\Models\Project;
+// use App\Observers\ResourceObserver;
+// use App\Models\Resource;
+use App\Observers\TestObserver;
+use App\Models\Test;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -28,6 +33,10 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        Project::observe(ProjectObserver::class);
+        // Resource::observe(ResourceObserver::class);
+        Test::observe(TestObserver::class);
+
     }
 
     /**

@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Country;
 use App\Models\State;
+use App\Models\Language;
+
 class CountrySeeder extends Seeder
 {
     /**
@@ -21,7 +23,13 @@ class CountrySeeder extends Seeder
 
         State::create([
             'country_id'=>'1',
-            'name'=>'xyz'
+            'name'=>'Uttar Pradesh',
         ]);
+
+        Language::create([
+            'name'=>'Hindi',
+        ]
+    );
+
     }
 }

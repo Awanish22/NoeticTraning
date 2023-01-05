@@ -326,6 +326,7 @@ export default {
         .then((response) => {
           if (responce.status === 200) {
             this.data = response.data;
+            
           }
         })
         .catch((error) => {

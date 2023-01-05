@@ -22,12 +22,13 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(CountrySeeder::class);
-        $this->call(UserSeeder::class);
+        // $this->call(UserSeeder::class);
         \App\Models\State::factory(30)->create();
         \App\Models\Country::factory(30)->create();
         \App\Models\City::factory(30)->create();
         
         \App\Models\Post::factory(30)->create();
         \App\Models\Category::factory(30)->create();
+        \App\Models\Language::factory(5)->create();
     }
 }
