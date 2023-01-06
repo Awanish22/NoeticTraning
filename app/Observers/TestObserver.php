@@ -21,10 +21,10 @@ class TestObserver
     //     dd($test);
     // }
 
-    public function updated(Test $test)
+    public function updated(Test $test,$id)
     {
-                $test->Test::where('id',$id)->first();
-                // dd($id);
+        $test = Test::where('id',$id)->first();
+                        dd($id);
         // $test->Test::where('id', $test->id)->first();
         // // dd($test->id);
         $test->language()->sync(collect(request('language')));

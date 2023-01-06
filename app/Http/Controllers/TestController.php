@@ -59,14 +59,14 @@ class TestController extends Controller
         // $test = Test::where('id',$id)->first();
 
         $test->update($request->only('name','clas','address', 'country_id','state_id','dob','gender','text'));
-        $test->language()->sync(collect(request('language')));
+        // $test->language()->sync(collect(request('language')));
 
         return response()->json(['data' => 'Updated'], 200);
     }
 
     public function destroy(Test $test)
     {
-        // $test = Test::find($id);
+        $test = Test::find($id);
         $test->Test::delete();
         $test->language()->detach();
 
